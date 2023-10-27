@@ -1,0 +1,71 @@
+namespace aids
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void BubbleSort_Click(object sender, EventArgs e)
+        {
+            int[] tab = new int[] { 5, 3, 4, 1, 8, 2, 3, 4, };
+            int[] wynik = Bubble(tab);
+            string temp = string.Join(", ", wynik);
+            MessageBox.Show("Posortowane dane: " + temp);
+        }
+
+        int[] Bubble(int[] tab)
+
+        {
+            int temp;
+            bool cbz;
+            do
+            {
+                cbz = false;
+                for (int i = 0; i < tab.Length - 1; i++)
+                {
+                    if (tab[i] > tab[i + 1])
+                    {
+                        temp = tab[i];
+                        tab[i] = tab[i + 1];
+                        tab[i + 1] = temp;
+                        cbz = true;
+                    }
+                }
+            } while (cbz);
+
+            return tab;
+        }
+
+        private void SelectSort_Click(object sender, EventArgs e)
+        {
+            int[] tab2 = new int[] { 5, 3, 7, 3, 1, 2, 9};
+            Select(tab2);
+            string posortowane = string.Join(',', tab2);
+            MessageBox.Show("Posortowane dane: " + posortowane);
+        }
+
+        void Select(int[] tab)
+        {
+            int minIndex;
+            for(int i = 0;i < tab.Length - 1;i++)
+            {
+                minIndex = i;
+                for(int j = i + 1;j < tab.Length; j++)
+                {
+                    if (tab[minIndex] > tab[j])
+                    {
+                        minIndex = j;
+                    }
+                }
+                if(minIndex != i)
+                {
+                    int temp = tab[minIndex];
+                    tab[minIndex] = tab[i];
+                    tab[i] = temp;
+                }
+            }
+        }
+    }
+}
